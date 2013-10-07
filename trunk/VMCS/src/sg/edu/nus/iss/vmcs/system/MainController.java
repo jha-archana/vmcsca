@@ -13,6 +13,7 @@ import java.io.*;
 import sg.edu.nus.iss.vmcs.maintenance.*;
 import sg.edu.nus.iss.vmcs.machinery.*;
 import sg.edu.nus.iss.vmcs.store.*;
+import sg.edu.nus.iss.vmcs.transaction.TransactionController;
 import sg.edu.nus.iss.vmcs.util.*;
 
 /**
@@ -28,6 +29,7 @@ public class MainController {
 	private MachineryController   machineryCtrl;
 	private MaintenanceController maintenanceCtrl;
 	private StoreController       storeCtrl;
+private TransactionController transactionCtrl;
 
 	private String      propertyFile;
 
@@ -60,6 +62,7 @@ public class MainController {
 			machineryCtrl = new MachineryController(this);
 			machineryCtrl.initialize();
 			maintenanceCtrl = new MaintenanceController(this);
+			transactionCtrl=new TransactionController(this);
 		} catch (IOException e) {
 			throw new VMCSException(
 				"MainController.initialize",
@@ -86,6 +89,14 @@ public class MainController {
 	public MaintenanceController getMaintenanceController() {
 		return maintenanceCtrl;
 	}
+
+	public TransactionController getTransactionController() {
+	return transactionCtrl;
+}
+
+public void setTransactionController(TransactionController transactionCtrl) {
+	this.transactionCtrl = transactionCtrl;
+}
 
 	public void closeDown() {
 		try {

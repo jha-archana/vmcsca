@@ -25,7 +25,8 @@ public class SimulatorControlPanel extends Frame {
     public static final int SIMUL_END      = 1;
     public static final int ACT_MAINTAINER = 2;
     public static final int ACT_MACHINERY  = 3;
-    private static final int NUM_BUTTONS   = 4;
+    public static final int ACT_CUSTOMER  = 4;
+    private static final int NUM_BUTTONS   = 5;
 
 
     private static final String title = "Simulation Control Panel";
@@ -34,6 +35,7 @@ public class SimulatorControlPanel extends Frame {
     private static final String L_SIMUL_END      = "End Simulation";
     private static final String L_ACT_MAINTAINER = "Activate Maintainer Panel";
     private static final String L_ACT_MACHINERY  = "Activate Machinery Panel";
+    private static final String L_ACT_CUSTOMER  = "Activate Customer Panel";
 
     private MainController          mainCtrl;
     private SimulationController    simulationCtrl;
@@ -58,6 +60,8 @@ public class SimulatorControlPanel extends Frame {
         addButton(ACT_MAINTAINER, L_ACT_MAINTAINER,
 		          new ActivateMaintainerPanelButtonListener(simulationCtrl));
         addButton(ACT_MACHINERY,  L_ACT_MACHINERY,
+		          new ActivateMachineryPanelButtonListener(simulationCtrl));
+        addButton(ACT_CUSTOMER,  L_ACT_CUSTOMER,
 		          new ActivateMachineryPanelButtonListener(simulationCtrl));
         addButton(SIMUL_END,  L_SIMUL_END,
 		          new EndSimulationButtonListener(mainCtrl));
@@ -99,6 +103,7 @@ public class SimulatorControlPanel extends Frame {
         setButtonState (SIMUL_BEGIN,   !isOn);
         setButtonState (ACT_MAINTAINER, isOn);
         setButtonState (ACT_MACHINERY,  isOn);
+        setButtonState (ACT_CUSTOMER,  isOn);
         setButtonState (SIMUL_END,      isOn);
     }
 
