@@ -41,7 +41,7 @@ public class MachineryController {
 	}
 
 	public void closeDown() {
-		if (ml != null)
+		if (ml != null) 
 			ml.dispose();
 	}
 
