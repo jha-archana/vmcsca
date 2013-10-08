@@ -15,7 +15,7 @@ public class DrinkSelectionBox extends Panel {
 
      private TransactionController transactionCtrl;
      private StoreController storeCtrl;
-     
+     private DrinkSelectionItem[] drinkSelectionItems;
 
      public DrinkSelectionBox(Panel container, TransactionController controller) {
 
@@ -29,11 +29,46 @@ public class DrinkSelectionBox extends Panel {
              drink_identifiers = new int[len];
              StoreItem[] items = storeCtrl.getStoreItems(Store.DRINK);
 
-             
+             drinkSelectionItems = new DrinkSelectionItem[len];
+            DrinkSelectionListener dsl = new DrinkSelectionListener(transactionCtrl);
+             StoreObject ob;
+
+             for (i = 0; i < len; i++) {
+                     // drink_identifiers[i] = ((DrinksBrand) items[i].getContent())
+                     // .getPrice();
+                     drink_identifiers[i] = ((DrinksBrand) items[i].getContent())
+                                     .getPrice();
+                     drinkSelectionItems[i] = new DrinkSelectionItem(this, items[i], i);
+                     drinkSelectionItems[i].addListener(dsl);
+             }
              }
      
+     public void setState(int brand_index, boolean active) {
+         // activate / deactivate drink selection buttons on cust panel
+         drinkSelectionItems[brand_index].setItemState(active);
+ }
+
+
+     
 public void setActive(boolean active) {
-    
+	int len = drink_identifiers.length;
+    for (int i = 0; i < len; i++) {
+    	drinkSelectionItems[i].setItemState(active);
+    }
 }
 
+
+public void update(int brand, int quantity, int price, String name) {
+    drinkSelectionItems[brand].setName(name);
+    drinkSelectionItems[brand].setPrice(price);
+    if (quantity > 0) {
+        setItemState(brand, true);
+} else {
+        setItemState(brand, false);
+}
+}
+
+public void setItemState(int brand_index, boolean active) {
+    setState(brand_index, active);
+}
 }
