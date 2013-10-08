@@ -54,6 +54,9 @@ public class CustomerPanel extends Dialog {
 
             // layout setup
             this.setLayout(new BorderLayout());
+            this.add("North", northPanel);
+            this.add("Center", centerPanel);
+           // this.add("South", southPanel);
            
 
             pack();

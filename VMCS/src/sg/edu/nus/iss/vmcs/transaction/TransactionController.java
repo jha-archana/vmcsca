@@ -46,6 +46,11 @@ public class TransactionController {
 		
 	}
 	
+	
+	public MainController getMainController() {
+        return mCtrl;
+}
+
 	public CustomerPanel getCustomerPanel()
 	{
 		
@@ -59,7 +64,7 @@ public class TransactionController {
 		if (cPnl == null)
 			cPnl = new CustomerPanel((Frame) scp, this);
 		cPnl.display();
-		//cPnl.setActive(MaintenancePanel.DIALOG, true);
+	//cPnl.setActive(MaintenancePanel.DIALOG, true);
 		dCtrl.updateDrinkPanel();
 		
 	}
