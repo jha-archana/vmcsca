@@ -15,10 +15,11 @@ public class DispenseController {
 	}
 
 	public void updateDrinkPanel() {
-		int len = tCtrl.getMainController().getStoreController().getStoreSize(Store.DRINK);
-        for (int i = 0; i < len; i++) {
-                updateDrinkSelection(i);
-        }
+		int len = tCtrl.getMainController().getStoreController()
+				.getStoreSize(Store.DRINK);
+		for (int i = 0; i < len; i++) {
+			updateDrinkSelection(i);
+		}
 	}
 
 	public void updateDrinkSelection(int index) {
@@ -35,5 +36,11 @@ public class DispenseController {
 	public void allowSelection(boolean activeSelect) {
 
 		tCtrl.getCustomerPanel().getDrinkSelectionBox().setActive(activeSelect);
+	}
+	
+	public void resetCan()
+	{
+		
+		tCtrl.getCustomerPanel().getCanCollectionBox().setValue("");
 	}
 }

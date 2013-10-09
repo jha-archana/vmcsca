@@ -26,6 +26,6 @@ public class DrinkSelectionListener implements ActionListener {
                             + tctrl.getStoreController().getStore(Store.DRINK).getStoreItem(idx).getContent().getName()
                             + " / "
                             + ((DrinksBrand) tctrl.getStoreController().getStore(Store.DRINK).getStoreItem(idx).getContent()).getPrice());
-          //  tctrl.startTransaction(idx);
+            tctrl.startTransaction(idx);
     }
 }

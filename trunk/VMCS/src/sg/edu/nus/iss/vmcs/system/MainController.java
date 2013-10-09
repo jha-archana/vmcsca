@@ -107,5 +107,6 @@ public void setTransactionController(TransactionController transactionCtrl) {
 		machineryCtrl.closeDown();
 		maintenanceCtrl.closeDown();
 		simulatorCtrl.closeDown();
+		//transactionCtrl.
 	}
 }
