@@ -11,14 +11,15 @@ import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.store.StoreController;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.store.StoreObject;
+import sg.edu.nus.iss.vmcs.transaction.TransactionController;
 
 public class CoinInputBox extends Panel{
-	 private CoinReceiver ctrl;
+	 private TransactionController ctrl;
      private StoreController storeCtrl;
-     public CoinInputBox(Panel composite, CoinReceiver controller) {
+     public CoinInputBox(Panel composite, TransactionController controller) {
          ctrl = controller;
          
-         StoreItem[] items = storeCtrl.getStoreItems(Store.CASH);
+       //  StoreItem[] items = storeCtrl.getStoreItems(Store.CASH);
 
          this.setLayout(new GridLayout(0, 1));
 

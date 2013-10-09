@@ -15,4 +15,10 @@ this.tCtrl=tCtrl;
 		
 		
 	}
+	public void startReceive()
+	{
+		
+	tCtrl.getCustomerPanel().getCoinInputBox().setActive(true);
+		
+	}
 }

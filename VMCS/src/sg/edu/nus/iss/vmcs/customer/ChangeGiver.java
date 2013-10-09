@@ -9,7 +9,10 @@ private TransactionController tCtrl;
 	{
 this.tCtrl=tCtrl;
 }
-	
+	 public void resetChange() {
+		 tCtrl.getCustomerPanel().getRefundChangeTrayDisplay().setValue(0);
+ }       
+
 	public void displayChangeStatus()
 	{
 		
