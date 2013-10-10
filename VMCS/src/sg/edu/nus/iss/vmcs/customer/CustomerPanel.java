@@ -56,8 +56,8 @@ public class CustomerPanel extends Dialog {
 				transactionController);
 		centerPanel.add(drinkSelectionBox);
 		coinInputBox = new CoinInputBox(northPanel,
-				transactionController);
-		centerPanel.add(drinkSelectionBox);
+				transactionController.getCoinReceiver());
+		northPanel.add(coinInputBox);
 		refundChangeTrayDisplay = new LabelledDisplay("Collect Coins:", 5,
 				LabelledDisplay.FLOW);
 		refundChangeTrayDisplay.setEditable(false);

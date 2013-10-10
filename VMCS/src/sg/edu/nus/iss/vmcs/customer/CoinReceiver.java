@@ -9,16 +9,31 @@ private TransactionController tCtrl;
 	{
 this.tCtrl=tCtrl;
 }
-	
+	public TransactionController getTransactionController()
+	{
+		return tCtrl;
+	}
 	public void setActive(boolean status)
 	{
 		
-		
+		tCtrl.getCustomerPanel().getCoinInputBox().setActive(status);
 	}
 	public void startReceive()
 	{
 		
-	tCtrl.getCustomerPanel().getCoinInputBox().setActive(true);
+		setActive(true);
+		
+	}
+	
+	public void receiveCoin(int coin)
+	{
+		
+		
+	}
+	
+	public void continueReceive()
+	{
+		setActive(true);
 		
 	}
 }

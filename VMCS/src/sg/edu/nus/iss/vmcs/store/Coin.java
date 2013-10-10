@@ -19,7 +19,7 @@ public class Coin extends StoreObject {
 
     private int value;
     private double weight;
-
+    public final static int INVALID_COIN = 9999;
     public Coin () {
     }
     public Coin (int value, double weight) {
