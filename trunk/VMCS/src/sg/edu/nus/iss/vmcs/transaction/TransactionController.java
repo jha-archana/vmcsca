@@ -19,6 +19,8 @@ public class TransactionController {
 	private CustomerPanel cPnl;
 	private StoreController strCtrl;
 	private TransactionState currentState;
+	
+	
 	public TransactionController(MainController mctrl)
 	{
 		mCtrl = mctrl;
@@ -29,6 +31,11 @@ public class TransactionController {
 		
 		
 	}
+	
+
+	
+
+
 
 	public CoinReceiver getCoinReceiver()
 	{
@@ -68,13 +75,20 @@ public class TransactionController {
 		cPnl.display();
 	//cPnl.setActive(MaintenancePanel.DIALOG, true);
 		dCtrl.updateDrinkPanel();
+		dCtrl.allowSelection(true);
 		currentState=new DrinkSelectionState();
 	}
 	
 	public void startTransaction(int selectedItem)
 	{
+		currentState.setSelection(selectedItem);
+		currentState.startTransaction(this);
 		
-		currentState.startTransaction(this, selectedItem);
+	}
+	
+	public void processMoneyReceived(int coin)
+	{
+		
 		
 	}
 	public DispenseController getDispenseController()
