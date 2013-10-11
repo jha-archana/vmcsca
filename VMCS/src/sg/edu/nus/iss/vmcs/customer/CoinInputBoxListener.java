@@ -15,21 +15,23 @@ public class CoinInputBoxListener implements ActionListener {
     }
 
     public void actionPerformed (ActionEvent e) {
+    	
     	Button btn = (Button) e.getSource();
         String cmd = btn.getActionCommand();
-    	
+        System.out.println("cmd"+cmd);
          try
          {
             if (!cmd.equalsIgnoreCase(Integer.toString(Coin.INVALID_COIN))) {
                     
-                    int weight = Integer.parseInt(cmd);
+                    double weight = Double.parseDouble(cmd);
+                    
                     coinReceiver.receiveCoin(weight);
             }
          }
          catch(Exception ex)
          {
         	 
-        	 
+        	 System.out.println("exc"+ex.getMessage());
          }
     }
 

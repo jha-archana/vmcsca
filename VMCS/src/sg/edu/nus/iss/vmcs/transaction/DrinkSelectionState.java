@@ -10,10 +10,10 @@ public class DrinkSelectionState extends TransactionState{
 	@Override
 	public void startTransaction(TransactionController controller) {
 		// TODO Auto-generated method stub
-		StoreItem storeitem=controller.getStoreController().getStoreItem(Store.DRINK, getSelection());
+		StoreItem storeitem=controller.getStoreController().getStoreItem(Store.DRINK, controller.getSelection());
 		DrinksBrand drink=(DrinksBrand) storeitem.getContent();
 		int price=drink.getPrice();
-		setPrice(price);
+		controller.setPrice(price);		
 		controller.getChangeGiver().resetChange();
 		controller.getDispenseController().resetCan();
 		controller.getChangeGiver().displayChangeStatus();
@@ -27,5 +27,7 @@ public class DrinkSelectionState extends TransactionState{
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }
