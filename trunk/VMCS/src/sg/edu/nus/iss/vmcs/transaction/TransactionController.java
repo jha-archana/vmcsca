@@ -19,7 +19,10 @@ public class TransactionController {
 	private CustomerPanel cPnl;
 	private StoreController strCtrl;
 	private TransactionState currentState;
-	
+	private int price;
+	private int selection;
+	private boolean changegiven;
+	private boolean drinkdispensed;
 	
 	public TransactionController(MainController mctrl)
 	{
@@ -32,6 +35,39 @@ public class TransactionController {
 		
 	}
 	
+	public boolean isChangegiven() {
+		return changegiven;
+	}
+
+	public void setChangegiven(boolean changegiven) {
+		this.changegiven = changegiven;
+	}
+
+	public boolean isDrinkdispensed() {
+		return drinkdispensed;
+	}
+
+	public void setDrinkdispensed(boolean drinkdispensed) {
+		this.drinkdispensed = drinkdispensed;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getSelection() {
+		return selection;
+	}
+
+
+	public void setSelection(int selection) {
+		this.selection = selection;
+	}
 
 	
 
@@ -77,16 +113,24 @@ public class TransactionController {
 		dCtrl.updateDrinkPanel();
 		dCtrl.allowSelection(true);
 		currentState=new DrinkSelectionState();
+		changegiven=false;
+		drinkdispensed=false;
 	}
 	
 	public void startTransaction(int selectedItem)
 	{
-		currentState.setSelection(selectedItem);
+		setSelection(selectedItem);
 		currentState.startTransaction(this);
 		
 	}
 	
 	public void processMoneyReceived(int coin)
+	{
+		currentState.processMoneyReceived(this, coin);
+		
+	}
+	
+	public void terminateTransaction()
 	{
 		
 		

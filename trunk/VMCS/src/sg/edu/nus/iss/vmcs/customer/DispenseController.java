@@ -44,9 +44,9 @@ public class DispenseController {
 		tCtrl.getCustomerPanel().getCanCollectionBox().setValue("");
 	}
 	
-	public void dispenseDrink(int item)
+	public boolean dispenseDrink(int item)
 	{
-		
+		return true;
 		
 	}
 }
