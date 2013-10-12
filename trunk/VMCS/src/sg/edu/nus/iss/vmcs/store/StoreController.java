@@ -10,6 +10,8 @@ package sg.edu.nus.iss.vmcs.store;
 
 import java.io.*;
 
+import sg.edu.nus.iss.vmcs.system.MainController;
+
 /**
  *
  *
@@ -21,15 +23,17 @@ public class StoreController {
 
 	private CashStore cStore;
 	private DrinksStore dStore;
-
 	private PropertyLoader cashLoader;
 	private PropertyLoader drinksLoader;
+	public  MainController mCtrl = null;
+
 
 	public StoreController(
 		PropertyLoader cashLoader,
-		PropertyLoader drinksLoader) {
+		PropertyLoader drinksLoader,MainController mCtrl) {
 		this.cashLoader = cashLoader;
 		this.drinksLoader = drinksLoader;
+		this.mCtrl=mCtrl;
 	}
 
 	public void initialize() throws IOException {
@@ -189,6 +193,10 @@ public class StoreController {
 	public void dispenseDrink(int idx)  {
 		DrinksStoreItem item;
 		item = (DrinksStoreItem) getStoreItem(Store.DRINK, idx);
+		//register Observers
+		item.addObserver(mCtrl.getMachineryController());
+		item.addObserver(mCtrl.getTransactionController().getDispenseController());
+	
 		item.decrement();
 	}
 
@@ -205,4 +213,5 @@ public class StoreController {
 		for (int i = 0; i < numOfCoins; i++)
 			item.decrement();
 	}
+	
 }
