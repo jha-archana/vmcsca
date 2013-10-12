@@ -1,17 +1,17 @@
 #
-#Tue Oct 08 00:37:51 SGT 2013
-Name6=Soya Bean
-Name5=Coca-Cola
+#Fri Oct 11 09:19:18 SGT 2013
+Name6=Heaven and Earth
+Name5=Coca-Cola Lite
 Name4=Soya Bean
 Name3=Sarsi
 Name2=Fanta
 Name1=Coca-Cola
 NumOfItems=6
-Quantity6=1
+Quantity6=7
 Quantity5=5
-Quantity4=2
-Quantity3=0
-Quantity2=1
+Quantity4=10
+Quantity3=3
+Quantity2=2
 Quantity1=0
 Price6=90
 Price5=100
