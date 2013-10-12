@@ -25,6 +25,10 @@ public class TransactionController {
 	private boolean drinkdispensed;
 	private MachineryController machCtrl;
 
+	public MachineryController getMachineryController() {
+		return machCtrl;
+	}
+
 	public TransactionController(MainController mctrl) {
 		mCtrl = mctrl;
 		dCtrl = new DispenseController(this);
