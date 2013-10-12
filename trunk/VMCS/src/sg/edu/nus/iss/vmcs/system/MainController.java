@@ -13,6 +13,7 @@ import java.io.*;
 import sg.edu.nus.iss.vmcs.maintenance.*;
 import sg.edu.nus.iss.vmcs.machinery.*;
 import sg.edu.nus.iss.vmcs.store.*;
+import sg.edu.nus.iss.vmcs.bridge.*;
 import sg.edu.nus.iss.vmcs.transaction.TransactionController;
 import sg.edu.nus.iss.vmcs.util.*;
 
@@ -29,7 +30,9 @@ public class MainController {
 	private MachineryController   machineryCtrl;
 	private MaintenanceController maintenanceCtrl;
 	private StoreController       storeCtrl;
-private TransactionController transactionCtrl;
+    private TransactionController transactionCtrl;
+    private PropertyLoader cashLoader, drinksLoader;
+
 
 	private String      propertyFile;
 
@@ -50,19 +53,20 @@ private TransactionController transactionCtrl;
 	public void initialize() throws VMCSException {
 		try {
 			Environment.initialize(propertyFile);
-			CashPropertyLoader cashLoader =
-				new CashPropertyLoader(Environment.getCashPropFile());
-			DrinkPropertyLoader drinksLoader =
-				new DrinkPropertyLoader(Environment.getDrinkPropFile());
+		
+			cashLoader =new CashPropertyLoader(Environment.getCashPropFile());
+			drinksLoader =new DrinkPropertyLoader(Environment.getDrinkPropFile());
+			
 			cashLoader.initialize();
 			drinksLoader.initialize();
-			storeCtrl = new StoreController(cashLoader, drinksLoader,this);
-			//storeCtrl.initialize();
+			
 			simulatorCtrl = new SimulationController(this);
 			machineryCtrl = new MachineryController(this);
 			machineryCtrl.initialize();
 			maintenanceCtrl = new MaintenanceController(this);
 			transactionCtrl=new TransactionController(this);
+			storeCtrl= new StoreController(cashLoader,drinksLoader,this);
+			
 			storeCtrl.initialize();
 		} catch (IOException e) {
 			throw new VMCSException(
