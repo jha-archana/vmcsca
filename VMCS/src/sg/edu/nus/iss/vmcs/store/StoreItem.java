@@ -1,5 +1,8 @@
 package sg.edu.nus.iss.vmcs.store;
 
+import java.util.Observable;
+
+
 /*
  * Copyright 2003 ISS.
  * The contents contained in this document may not be reproduced in any
@@ -15,7 +18,7 @@ package sg.edu.nus.iss.vmcs.store;
  * @author Olivo Miotto, Pang Ping Li
  */
 
-public class StoreItem {
+public class StoreItem extends Observable{
 
 	private StoreObject content;
 	private int quantity;
