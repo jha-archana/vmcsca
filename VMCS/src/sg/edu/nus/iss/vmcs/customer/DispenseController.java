@@ -1,12 +1,16 @@
 package sg.edu.nus.iss.vmcs.customer;
 
+
+import java.util.Observable;
+import java.util.Observer;
 import sg.edu.nus.iss.vmcs.store.DrinksBrand;
 import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.store.StoreObject;
 import sg.edu.nus.iss.vmcs.transaction.TransactionController;
+import sg.edu.nus.iss.vmcs.util.VMCSException;
 
-public class DispenseController {
+public class DispenseController implements Observer{
 
 	private TransactionController tCtrl;
 
@@ -44,9 +48,14 @@ public class DispenseController {
 		tCtrl.getCustomerPanel().getCanCollectionBox().setValue("");
 	}
 	
-	public boolean dispenseDrink(int item)
-	{
-		return true;
-		
+	
+	
+	public void dispenseDrink(int idx) throws VMCSException {
+		tCtrl.getMachineryController().dispenseDrink(idx);
+	}
+
+	@Override
+	public void update(Observable storeItem, Object object) {	
+		updateDrinkPanel();
 	}
 }
