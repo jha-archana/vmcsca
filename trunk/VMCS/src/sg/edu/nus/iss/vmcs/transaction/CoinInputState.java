@@ -29,7 +29,7 @@ public class CoinInputState extends TransactionState{
 				
 				if(controller.getChangeGiver().giveChange(coin-controller.getPrice()))
 				{
-					
+				controller.setChangegiven(true);
 				storecash(controller);
 				}
 			}
@@ -48,6 +48,8 @@ public class CoinInputState extends TransactionState{
 		{
 			
 			controller.getDispenseController().allowSelection(true);
+			controller.setState(new DrinkSelectionState());
+			
 		}
 		
 	}
@@ -63,7 +65,10 @@ public class CoinInputState extends TransactionState{
 		}
 		
 	}
-
-	
+@Override
+	public void cancelTransaction(TransactionController controller) {
+		super.cancelTransaction(controller);
+		controller.setState(new DrinkSelectionState());
+	}
 
 }

@@ -121,20 +121,35 @@ public class TransactionController {
 		currentState.processMoneyReceived(this, coin);
 
 	}
-
-	public void terminateTransaction() {
-
+	public void terminateTransaction()
+	{
+		
+		currentState.terminateTransaction(this);
 	}
-
-	public DispenseController getDispenseController() {
-
+	
+	public void cancelTransaction()
+	{
+		
+		currentState.cancelTransaction(this);
+	}
+	public void terminateFault()
+	{
+		
+		currentState.terminateFault(this);
+	}
+	public DispenseController getDispenseController()
+	{
+		
 		return dCtrl;
 	}
-
-	public void setState(TransactionState state) {
-
-		this.currentState = state;
-
+	
+	public void setState(TransactionState state)
+	{
+		
+		this.currentState=state;
+		
 	}
+
+	
 
 }

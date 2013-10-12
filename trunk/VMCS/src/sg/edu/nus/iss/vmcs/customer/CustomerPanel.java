@@ -1,6 +1,7 @@
 package sg.edu.nus.iss.vmcs.customer;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Font;
@@ -18,7 +19,7 @@ public class CustomerPanel extends Dialog {
 
 	private static final String TITLE = "Customer Panel";
 	public static final char DIALOG = 'a';
-
+	private Button terminateButton;
 	public final static Color ACT_COLOR = Color.white;
 	private DrinkSelectionBox drinkSelectionBox;
 	private CoinInputBox coinInputBox;
@@ -58,6 +59,15 @@ public class CustomerPanel extends Dialog {
 		coinInputBox = new CoinInputBox(northPanel,
 				transactionController.getCoinReceiver());
 		northPanel.add(coinInputBox);
+		
+		
+         terminateButton = new Button("Terminate and Return Cash"); 
+         TerminateButtonListener tbl = new TerminateButtonListener(
+                         this.transactionController);
+        // terminateButton.setEnabled(false);
+         terminateButton.addActionListener(tbl);
+         
+         northPanel.add(terminateButton);
 		refundChangeTrayDisplay = new LabelledDisplay("Collect Coins:", 5,
 				LabelledDisplay.FLOW);
 		refundChangeTrayDisplay.setEditable(false);
