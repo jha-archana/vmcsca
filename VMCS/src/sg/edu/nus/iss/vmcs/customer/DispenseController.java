@@ -50,8 +50,9 @@ public class DispenseController implements Observer{
 	
 	
 	
-	public void dispenseDrink(int idx) throws VMCSException {
+	public boolean dispenseDrink(int idx) throws VMCSException {
 		tCtrl.getMachineryController().dispenseDrink(idx);
+		return true;
 	}
 
 	@Override
