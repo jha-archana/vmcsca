@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.vmcs.store;
 
+
 /*
  * Copyright 2003 ISS.
  * The contents contained in this document may not be reproduced in any
@@ -20,5 +21,15 @@ public class DrinksStoreItem extends StoreItem {
 	public DrinksStoreItem(DrinksBrand ob, int qty) {
 		super((StoreObject) ob, qty);
 	}
+	
+	
+	@Override
+	public void decrement() {
+		super.decrement();
+		//Observer Pattern methods
+		setChanged();
+		notifyObservers();
+	}
+	
 
 }
