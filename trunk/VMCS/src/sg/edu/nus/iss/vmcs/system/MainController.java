@@ -56,13 +56,14 @@ private TransactionController transactionCtrl;
 				new DrinkPropertyLoader(Environment.getDrinkPropFile());
 			cashLoader.initialize();
 			drinksLoader.initialize();
-			storeCtrl = new StoreController(cashLoader, drinksLoader);
-			storeCtrl.initialize();
+			storeCtrl = new StoreController(cashLoader, drinksLoader,this);
+			//storeCtrl.initialize();
 			simulatorCtrl = new SimulationController(this);
 			machineryCtrl = new MachineryController(this);
 			machineryCtrl.initialize();
 			maintenanceCtrl = new MaintenanceController(this);
 			transactionCtrl=new TransactionController(this);
+			storeCtrl.initialize();
 		} catch (IOException e) {
 			throw new VMCSException(
 				"MainController.initialize",
