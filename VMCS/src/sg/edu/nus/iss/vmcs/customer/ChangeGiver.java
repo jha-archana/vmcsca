@@ -19,6 +19,8 @@ public class ChangeGiver {
 
 	public boolean giveChange(int change_required) {
 		System.out.println("change_required" + change_required);
+		//tCtrl.getMainController().getMachineryController().giveChange(idx, numOfCoins);
+		tCtrl.getCustomerPanel().getRefundChangeTrayDisplay().setValue(change_required);
 		return true;
 
 	}

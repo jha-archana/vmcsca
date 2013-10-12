@@ -52,6 +52,8 @@ public class DispenseController implements Observer{
 	
 	public boolean dispenseDrink(int idx) throws VMCSException {
 		tCtrl.getMachineryController().dispenseDrink(idx);
+		//tCtrl.getStoreController().dispenseDrink(item);
+		tCtrl.getCustomerPanel().getCanCollectionBox().setValue(tCtrl.getSelection());
 		return true;
 	}
 

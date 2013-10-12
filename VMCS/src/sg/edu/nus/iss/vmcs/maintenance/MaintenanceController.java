@@ -62,6 +62,7 @@ public class MaintenanceController {
 			mpanel.setActive(MaintenancePanel.PSWD, false);
 			MachineryController machctrl = mCtrl.getMachineryController();
 			machctrl.setDoorState(false);
+			mCtrl.getTransactionController().terminateTransaction();
 		}
 	}
 

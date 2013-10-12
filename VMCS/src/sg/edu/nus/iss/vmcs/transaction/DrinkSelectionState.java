@@ -25,7 +25,10 @@ public class DrinkSelectionState extends TransactionState{
 	@Override
 	public void processMoneyReceived(TransactionController controller, int coin) {
 		// TODO Auto-generated method stub
-		
+		if (controller.getCoinReceiver().getTotalInserted() > 0) {
+
+			controller.getCoinReceiver().refundcash();
+		}
 	}
 
 	
