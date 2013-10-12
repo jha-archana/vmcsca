@@ -8,6 +8,9 @@ package sg.edu.nus.iss.vmcs.machinery;
  *
  */
 
+import java.util.Observable;
+import java.util.Observer;
+
 import sg.edu.nus.iss.vmcs.system.*;
 import sg.edu.nus.iss.vmcs.util.*;
 import sg.edu.nus.iss.vmcs.store.*;
@@ -19,7 +22,7 @@ import sg.edu.nus.iss.vmcs.store.*;
  * @author Olivo Miotto, Pang Ping Li
  */
 
-public class MachineryController {
+public class MachineryController implements Observer{
 
 	public MainController mainCtrl;
 	public StoreController storeCtrl;
@@ -30,7 +33,10 @@ public class MachineryController {
 	public MachineryController(MainController mctrl) {
 		mainCtrl = mctrl;
 		storeCtrl = mctrl.getStoreController();
+		
 	}
+
+	
 
 	public MainController getMainController() {
 		return mainCtrl;
@@ -133,6 +139,16 @@ public class MachineryController {
 		storeCtrl.giveChange(idx, numOfCoins);
 		if (ml != null)
 			ml.getCashStoreDisplay().update();
+	}
+
+	@Override
+	public void update(Observable storeItem, Object obj) {
+		try {			
+			displayDrinkStock();
+		} catch (VMCSException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
