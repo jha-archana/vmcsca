@@ -1,5 +1,7 @@
 package sg.edu.nus.iss.vmcs.transaction;
 
+import sg.edu.nus.iss.vmcs.util.VMCSException;
+
 public class CoinInputState extends TransactionState{
 
 	@Override
@@ -52,7 +54,13 @@ public class CoinInputState extends TransactionState{
 	private boolean completeTransaction(TransactionController controller)
 	{
 		
-		return controller.getDispenseController().dispenseDrink(controller.getSelection());
+		try {
+			return controller.getDispenseController().dispenseDrink(controller.getSelection());
+		} catch (VMCSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 		
 	}
 
