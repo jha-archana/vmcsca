@@ -27,6 +27,7 @@ public class CustomerPanel extends Dialog {
 	private static final String HEADING = "VMCS Soft Drink Dispenser";
 	private LabelledDisplay refundChangeTrayDisplay;
 	private LabelledDisplay canCollectionBox;
+	private LabelledDisplay totalMoneyInsertedDisplay;
 
 	public CustomerPanel(Frame fr, TransactionController transactController) {
 		super(fr, TITLE);
@@ -53,13 +54,17 @@ public class CustomerPanel extends Dialog {
 		centerPanel.setLayout(new GridLayout(0, 1));
 
 		// Drink selection box
+		totalMoneyInsertedDisplay=new LabelledDisplay("Total Money Inserted:", 5,
+				LabelledDisplay.FLOW);
+		totalMoneyInsertedDisplay.setEditable(false);
+		totalMoneyInsertedDisplay.setValue("0 c");
 		drinkSelectionBox = new DrinkSelectionBox(northPanel,
 				transactionController);
 		centerPanel.add(drinkSelectionBox);
 		coinInputBox = new CoinInputBox(northPanel,
 				transactionController.getCoinReceiver());
 		northPanel.add(coinInputBox);
-		
+		northPanel.add(totalMoneyInsertedDisplay);
 		
          terminateButton = new Button("Terminate and Return Cash"); 
          TerminateButtonListener tbl = new TerminateButtonListener(
@@ -115,5 +120,15 @@ public class CustomerPanel extends Dialog {
 	public CoinInputBox getCoinInputBox() {
 		return coinInputBox;
 	}
+
+	public LabelledDisplay getTotalMoneyInsertedDisplay() {
+		return totalMoneyInsertedDisplay;
+	}
+
+	public void setTotalMoneyInsertedDisplay(
+			LabelledDisplay totalMoneyInsertedDisplay) {
+		this.totalMoneyInsertedDisplay = totalMoneyInsertedDisplay;
+	}
+	
 
 }

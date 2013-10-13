@@ -53,6 +53,7 @@ public class CoinReceiver {
 			totalInserted = totalInserted + foundCoin.getValue();
 			coins.add(foundCoin);
 			System.out.println("totalInserted" + totalInserted);
+			tCtrl.getCustomerPanel().getTotalMoneyInsertedDisplay().setValue(totalInserted);
 			tCtrl.processMoneyReceived(totalInserted);
 
 		}
@@ -75,6 +76,7 @@ public class CoinReceiver {
 	
 	public void refundcash()
 	{
+		tCtrl.getCustomerPanel().getRefundChangeTrayDisplay().setValue(totalInserted);
 		
 		
 	}
