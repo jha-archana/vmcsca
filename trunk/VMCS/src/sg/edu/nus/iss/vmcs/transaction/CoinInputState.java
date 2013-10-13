@@ -67,7 +67,7 @@ public class CoinInputState extends TransactionState{
 	}
 @Override
 	public void cancelTransaction(TransactionController controller) {
-		super.cancelTransaction(controller);
+		super.cancelTransaction(controller);		
 		controller.setState(new DrinkSelectionState());
 	}
 

@@ -18,23 +18,22 @@ import sg.edu.nus.iss.vmcs.transaction.TransactionController;
 import sg.edu.nus.iss.vmcs.util.*;
 
 /**
- *
- *
+ * 
+ * 
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
 
 public class MainController {
 
-	private SimulationController  simulatorCtrl;
-	private MachineryController   machineryCtrl;
+	private SimulationController simulatorCtrl;
+	private MachineryController machineryCtrl;
 	private MaintenanceController maintenanceCtrl;
-	private StoreController       storeCtrl;
-    private TransactionController transactionCtrl;
-    private PropertyLoader cashLoader, drinksLoader;
+	private StoreController storeCtrl;
+	private TransactionController transactionCtrl;
+	private PropertyLoader cashLoader, drinksLoader;
 
-
-	private String      propertyFile;
+	private String propertyFile;
 
 	public MainController(String propertyFile) {
 		this.propertyFile = propertyFile;
@@ -53,25 +52,24 @@ public class MainController {
 	public void initialize() throws VMCSException {
 		try {
 			Environment.initialize(propertyFile);
-		
-			cashLoader =new CashPropertyLoader(Environment.getCashPropFile());
-			drinksLoader =new DrinkPropertyLoader(Environment.getDrinkPropFile());
-			
+
+			cashLoader = new CashPropertyLoader(Environment.getCashPropFile());
+			drinksLoader = new DrinkPropertyLoader(
+					Environment.getDrinkPropFile());
+
 			cashLoader.initialize();
 			drinksLoader.initialize();
-			
+			storeCtrl = new StoreController(cashLoader, drinksLoader, this);
+
+			storeCtrl.initialize();
 			simulatorCtrl = new SimulationController(this);
 			machineryCtrl = new MachineryController(this);
 			machineryCtrl.initialize();
 			maintenanceCtrl = new MaintenanceController(this);
-			transactionCtrl=new TransactionController(this);
-			storeCtrl= new StoreController(cashLoader,drinksLoader,this);
-			
-			storeCtrl.initialize();
+
+			transactionCtrl = new TransactionController(this);
 		} catch (IOException e) {
-			throw new VMCSException(
-				"MainController.initialize",
-				e.getMessage());
+			throw new VMCSException("MainController.initialize", e.getMessage());
 		}
 	}
 
@@ -96,12 +94,12 @@ public class MainController {
 	}
 
 	public TransactionController getTransactionController() {
-	return transactionCtrl;
-}
+		return transactionCtrl;
+	}
 
-public void setTransactionController(TransactionController transactionCtrl) {
-	this.transactionCtrl = transactionCtrl;
-}
+	public void setTransactionController(TransactionController transactionCtrl) {
+		this.transactionCtrl = transactionCtrl;
+	}
 
 	public void closeDown() {
 		try {
@@ -112,6 +110,6 @@ public void setTransactionController(TransactionController transactionCtrl) {
 		machineryCtrl.closeDown();
 		maintenanceCtrl.closeDown();
 		simulatorCtrl.closeDown();
-		//transactionCtrl.
+		// transactionCtrl.
 	}
 }
