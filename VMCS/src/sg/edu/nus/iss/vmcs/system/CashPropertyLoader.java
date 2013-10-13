@@ -8,6 +8,8 @@ package sg.edu.nus.iss.vmcs.system;
  *
  */
 
+import java.io.IOException;
+
 import sg.edu.nus.iss.vmcs.store.*;
 
 /**
@@ -17,15 +19,16 @@ import sg.edu.nus.iss.vmcs.store.*;
  * @author Olivo Miotto, Pang Ping Li
  */
 
-public class CashPropertyLoader extends FilePropertyLoader {
+public class CashPropertyLoader extends PropertyLoader {
 
 	private static final String NAME_LABEL     = "Name";
 	private static final String WEIGHT_LABEL   = "Weight";
 	private static final String VALUE_LABEL    = "Value";
 	private static final String QUANTITY_LABEL = "Quantity";
+	private PropertyLoaderImpl fileLoader;
 
 	public CashPropertyLoader(String filen) {
-		super(filen);
+		fileLoader = new FilePropertyLoader(filen);
 	}
 
 	public StoreItem getItem (int index) {
@@ -33,19 +36,19 @@ public class CashPropertyLoader extends FilePropertyLoader {
 		Coin coin = new Coin();
 
 		String name = new String(NAME_LABEL + idx);
-		String value = getValue(name);
+		String value = fileLoader.getValue(name);
 		coin.setName(value);
 
 		name = new String(WEIGHT_LABEL + idx);
-		value = getValue(name);
+		value = fileLoader.getValue(name);
 		coin.setWeight(Double.parseDouble(value));
 
 		name = new String(VALUE_LABEL + idx);
-		value = getValue(name);
+		value = fileLoader.getValue(name);
 		coin.setValue(Integer.parseInt(value));
 
 		name = new String(QUANTITY_LABEL + idx);
-		value = getValue(name);
+		value = fileLoader.getValue(name);
 		int qty = Integer.parseInt(value);
 
 		CashStoreItem item = new CashStoreItem(coin, qty);
@@ -59,16 +62,32 @@ public class CashPropertyLoader extends FilePropertyLoader {
 		Coin cn = (Coin) item.getContent();
 		String itn = new String(NAME_LABEL + idx);
 
-		setValue(itn, cn.getName());
+		fileLoader.setValue(itn, cn.getName());
 
 		itn = new String(WEIGHT_LABEL + idx);
-		setValue(itn, String.valueOf(cn.getWeight()));
+		fileLoader.setValue(itn, String.valueOf(cn.getWeight()));
 
 		itn = new String(VALUE_LABEL + idx);
-		setValue(itn, String.valueOf(cn.getValue()));
+		fileLoader.setValue(itn, String.valueOf(cn.getValue()));
 
 		itn = new String(QUANTITY_LABEL + idx);
-		setValue(itn, String.valueOf(item.getQuantity()));
+		fileLoader.setValue(itn, String.valueOf(item.getQuantity()));
 	}
+
+public void initialize() throws IOException {		 
+         fileLoader.initialize();
+ }
+
+ public void saveProperty() throws IOException {
+         fileLoader.saveProperty();
+ }
+
+ public int getNumOfItems() {
+         return fileLoader.getNumOfItems();
+ }
+
+ public void setNumOfItems(int numItems) {
+         fileLoader.setNumOfItems(numItems);
+ }
 
 }
