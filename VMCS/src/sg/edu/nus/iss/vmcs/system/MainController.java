@@ -13,7 +13,7 @@ import java.io.*;
 import sg.edu.nus.iss.vmcs.maintenance.*;
 import sg.edu.nus.iss.vmcs.machinery.*;
 import sg.edu.nus.iss.vmcs.store.*;
-import sg.edu.nus.iss.vmcs.bridge.*;
+import sg.edu.nus.iss.vmcs.system.*;
 import sg.edu.nus.iss.vmcs.transaction.TransactionController;
 import sg.edu.nus.iss.vmcs.util.*;
 
