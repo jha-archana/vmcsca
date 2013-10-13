@@ -16,18 +16,18 @@ import java.io.*;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public interface PropertyLoader {
+public abstract class PropertyLoader {
 	
-	public void initialize() throws IOException;
+	public abstract void initialize() throws IOException;
 	
-	public void saveProperty() throws IOException; 
+	public abstract void saveProperty() throws IOException; 
 
-	public int getNumOfItems();
+	public abstract int getNumOfItems();
 
-	public void setNumOfItems(int numItems);
+	public abstract void setNumOfItems(int numItems);
 
-	public StoreItem getItem (int index);
+	public abstract StoreItem getItem (int index);
 
-	public void setItem (int index, StoreItem item);
+	public abstract void setItem (int index, StoreItem item);
 
 }

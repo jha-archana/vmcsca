@@ -20,7 +20,7 @@ import sg.edu.nus.iss.vmcs.store.*;
  * @author Olivo Miotto, Pang Ping Li
  */
 
-public abstract class FilePropertyLoader implements PropertyLoader {
+public class FilePropertyLoader implements PropertyLoaderImpl {
 
 	private static final String PROP_NUM_ITEMS = "NumOfItems";
 
@@ -55,9 +55,9 @@ public abstract class FilePropertyLoader implements PropertyLoader {
 		prop.setProperty(PROP_NUM_ITEMS, String.valueOf(vl));
 	}
 
-	public abstract StoreItem getItem(int index);
+	//public abstract StoreItem getItem(int index);
 
-	public abstract void setItem(int index, StoreItem item);
+	//public abstract void setItem(int index, StoreItem item);
 
 	// Utility methoids for accessing the hashtable 
 
