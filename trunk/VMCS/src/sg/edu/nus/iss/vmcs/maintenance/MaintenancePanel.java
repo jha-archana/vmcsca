@@ -8,16 +8,29 @@ package sg.edu.nus.iss.vmcs.maintenance;
  *
  */
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Dialog;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.event.ActionListener;
 
-import sg.edu.nus.iss.vmcs.store.*;
-import sg.edu.nus.iss.vmcs.util.*;
+import sg.edu.nus.iss.vmcs.store.Store;
+import sg.edu.nus.iss.vmcs.util.LabelledDisplay;
+import sg.edu.nus.iss.vmcs.util.VMCSException;
+import sg.edu.nus.iss.vmcs.util.WarningDisplay;
 
 /**
  *
  *
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
+ * @author Updated by Archana to apply Command Pattern
  */
 
 public class MaintenancePanel extends Dialog {
@@ -28,14 +41,15 @@ public class MaintenancePanel extends Dialog {
 	private static final String TITLE = "Maintenance Panel";
 	private LabelledDisplay password;
 	private LabelledDisplay collectCash;
-	private Button exitBtn;
+	private ExitButton exitBtn;
 	private CoinDisplay cDisplay; // need to be access from other class.
 	private DrinkDisplay dDisplay; // need to be access from other class.
-	private ButtonItem totalCash;
-	private Button transferCash;
+	private TotalCashButton totalCash;
+	private TransferCashButton transferCash;
 	private WarningDisplay validPswd;
 	private WarningDisplay invalidPswd;
 	private MaintenanceController mctrl;
+	private Label totalCashValue;
 
 	public MaintenancePanel(Frame fr, MaintenanceController mc) {
 		super(fr, TITLE, false);
@@ -73,26 +87,42 @@ public class MaintenancePanel extends Dialog {
 
 		Panel tp5 = new Panel();
 		tp5.setLayout(new GridLayout(0, 1));
+		
+		//adding common button listener to interpret Command pattern
+		ButtonHandlerListener buttonListener = new ButtonHandlerListener(mctrl);
 
-		totalCash = new ButtonItem("Show Total Cash Held", 5, ButtonItem.FLOW);
-		TotalCashButtonListener tl;
+		//totalCash = new ButtonItem("Show Total Cash Held", 5, ButtonItem.FLOW);
+		
+		//totalCash = new TotalCashButton("Show Total Cash Held", 5, ButtonItem.FLOW);
+		totalCash = new TotalCashButton("Show Total Cash Held");
+		//TotalCashButtonListener tl;
 
-		tl = new TotalCashButtonListener(mctrl);
-		totalCash.addListener(tl);
+		//tl = new TotalCashButtonListener(mctrl);
+		totalCash.addActionListener(buttonListener);
+		
+		totalCashValue = new Label("          ");
+		totalCashValue.setBackground(Color.white);
 
-		transferCash = new Button("Press to Collect All Cash");
-		transferCash.addActionListener(new TransferCashButtonListener(mctrl));
+		transferCash = new TransferCashButton("Press to Collect All Cash");
+		transferCash.addActionListener(buttonListener);
 
+		Panel tp7 = new Panel();
+		tp7.setLayout(new FlowLayout());
+		tp7.add(totalCash);
+		tp7.add(totalCashValue);
+
+		
 		Panel tp6 = new Panel();
 		tp6.setLayout(new FlowLayout());
 		tp6.add(transferCash);
 
 		collectCash =
 			new LabelledDisplay("Collect Cash:", 5, LabelledDisplay.FLOW);
-		exitBtn = new Button("Press Here when Finished");
-		exitBtn.addActionListener(new ExitButtonListener(mctrl));
+		exitBtn = new ExitButton("Press Here when Finished");
+		exitBtn.addActionListener(buttonListener);
 
-		tp5.add(totalCash);
+		//tp5.add(totalCash);
+		tp5.add(tp7);
 		tp5.add(tp6);
 		tp5.add(collectCash);
 		tp5.add(exitBtn);
@@ -155,7 +185,7 @@ public class MaintenancePanel extends Dialog {
 				collectCash.setActive(st);
 				cDisplay.setActive(st);
 				dDisplay.setActive(st);
-				totalCash.setActive(st);
+				totalCash.setEnabled(st);
 				transferCash.setEnabled(st);
 				break;
 			case PSWD :
@@ -172,7 +202,8 @@ public class MaintenancePanel extends Dialog {
 		String stc;
 
 		stc = new String(tc + " C");
-		totalCash.setValue(stc);
+		//totalCash.setValue(stc);
+		totalCashValue.setText(stc);
 	}
 
 	public void displayCoins(int cc) {
@@ -213,7 +244,8 @@ public class MaintenancePanel extends Dialog {
 	}
 
 	public void initTotalCash() {
-		totalCash.setValue("");
+		//totalCash.setValue("");
+		totalCashValue.setText("");
 	}
 
 	public void clearPassword() {
