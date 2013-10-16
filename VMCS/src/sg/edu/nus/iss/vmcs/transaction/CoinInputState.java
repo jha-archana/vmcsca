@@ -3,11 +3,13 @@ package sg.edu.nus.iss.vmcs.transaction;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 public class CoinInputState extends TransactionState{
-
+	CoinInputState()
+	{}
 	@Override
 	public void startTransaction(TransactionController controller) {
 		// TODO Auto-generated method stub
 		
+		super.refundMoney(controller);
 	}
 
 	@Override

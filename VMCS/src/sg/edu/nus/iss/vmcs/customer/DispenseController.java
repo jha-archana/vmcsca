@@ -8,6 +8,7 @@ import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.store.StoreObject;
 import sg.edu.nus.iss.vmcs.transaction.TransactionController;
+
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 public class DispenseController implements Observer{
@@ -16,6 +17,7 @@ public class DispenseController implements Observer{
 
 	public DispenseController(TransactionController tCtrl) {
 		this.tCtrl = tCtrl;
+		
 	}
 
 	public void updateDrinkPanel() {

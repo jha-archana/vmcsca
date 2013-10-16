@@ -1,7 +1,8 @@
 package sg.edu.nus.iss.vmcs.transaction;
 
 public abstract class TransactionState {
-
+	TransactionState()
+	{}
 	public abstract void startTransaction(TransactionController controller);
 
 	public abstract void processMoneyReceived(TransactionController controller,
@@ -40,5 +41,14 @@ public abstract class TransactionState {
 			}
 			controller.getDispenseController().allowSelection(true);
 		}
+	}
+	
+	public void refundMoney(TransactionController controller)
+	{
+		if (controller.getCoinReceiver().getTotalInserted() > 0) {
+
+			controller.getCoinReceiver().refundcash();
+		}
+		
 	}
 }

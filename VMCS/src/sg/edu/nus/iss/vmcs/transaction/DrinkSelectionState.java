@@ -6,7 +6,7 @@ import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.store.StoreObject;
 
 public class DrinkSelectionState extends TransactionState{
-
+	DrinkSelectionState(){}
 	@Override
 	public void startTransaction(TransactionController controller) {
 		// TODO Auto-generated method stub
@@ -25,10 +25,7 @@ public class DrinkSelectionState extends TransactionState{
 	@Override
 	public void processMoneyReceived(TransactionController controller, int coin) {
 		// TODO Auto-generated method stub
-		if (controller.getCoinReceiver().getTotalInserted() > 0) {
-
-			controller.getCoinReceiver().refundcash();
-		}
+		super.refundMoney(controller);
 	}
 
 	

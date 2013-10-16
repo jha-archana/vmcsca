@@ -67,6 +67,7 @@ public class CoinReceiver {
 	}
 
 	public boolean storeCash() {
+		tCtrl.getCustomerPanel().getTotalMoneyInsertedDisplay().setValue("0 c");
 		return true;
 	}
 
@@ -78,6 +79,6 @@ public class CoinReceiver {
 	{
 		tCtrl.getCustomerPanel().getRefundChangeTrayDisplay().setValue(totalInserted);
 		
-		
+		tCtrl.getCustomerPanel().getTotalMoneyInsertedDisplay().setValue("0 c");
 	}
 }
