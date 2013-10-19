@@ -49,6 +49,5 @@ public class CashStore extends Store {
         return null;
 	}
 
-	/*Test Push*/
 }
 
