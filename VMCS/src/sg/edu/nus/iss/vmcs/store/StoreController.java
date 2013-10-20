@@ -9,6 +9,10 @@ package sg.edu.nus.iss.vmcs.store;
  */
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import sg.edu.nus.iss.vmcs.system.MainController;
 
 
@@ -27,6 +31,7 @@ public class StoreController {
 	private PropertyLoader cashLoader;
 	private PropertyLoader drinksLoader;
 	public  MainController mCtrl = null;
+	private List<DrinksBrand.PriceSnapshot> snapshots;
 
 
 	public StoreController(
@@ -54,6 +59,8 @@ public class StoreController {
 		int numOfItems = drinksLoader.getNumOfItems();
 		dStore.setStoreSize(numOfItems);
 
+		snapshots = new ArrayList<DrinksBrand.PriceSnapshot>();
+		
 		for (int i = 0; i < numOfItems; i++) {
             DrinksStoreItem item = (DrinksStoreItem) drinksLoader.getItem(i);
 			StoreObject brand = item.getContent();
@@ -62,6 +69,8 @@ public class StoreController {
 			    item.setContent(existingBrand);
 			}
 			dStore.addItem(i, item);
+			
+			snapshots.add(((DrinksBrand)brand).createSnapshot());
 		}
 	}
 
@@ -162,6 +171,14 @@ public class StoreController {
 		}
 
 		return cc;
+	}
+	
+	public void resetPrice(){
+		StoreItem[] items = this.getStoreItems(Store.DRINK);
+		Iterator<DrinksBrand.PriceSnapshot> it = snapshots.iterator();
+		for (StoreItem item : items){
+			((DrinksBrand)item.getContent()).setSnapshot(it.next());
+		}
 	}
 
 	public void closeDown() throws IOException {
