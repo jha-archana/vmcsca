@@ -45,6 +45,7 @@ public class MaintenancePanel extends Dialog {
 	private CoinDisplay cDisplay; // need to be access from other class.
 	private DrinkDisplay dDisplay; // need to be access from other class.
 	private TotalCashButton totalCash;
+	private ResetPrice resetPrice;
 	private TransferCashButton transferCash;
 	private WarningDisplay validPswd;
 	private WarningDisplay invalidPswd;
@@ -100,6 +101,10 @@ public class MaintenancePanel extends Dialog {
 		//tl = new TotalCashButtonListener(mctrl);
 		totalCash.addActionListener(buttonListener);
 		
+		/*Reset Price Button*/
+		resetPrice = new ResetPrice("Reset Price");
+		resetPrice.addActionListener(buttonListener);
+				
 		totalCashValue = new Label("          ");
 		totalCashValue.setBackground(Color.white);
 
@@ -108,6 +113,7 @@ public class MaintenancePanel extends Dialog {
 
 		Panel tp7 = new Panel();
 		tp7.setLayout(new FlowLayout());
+		tp7.add(resetPrice);
 		tp7.add(totalCash);
 		tp7.add(totalCashValue);
 

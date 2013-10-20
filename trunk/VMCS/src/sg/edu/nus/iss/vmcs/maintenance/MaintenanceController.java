@@ -101,6 +101,12 @@ public class MaintenanceController {
 		sctrl.setPrice(curIdx, pr);
 		mpanel.getDrinksDisplay().getPriceDisplay().setValue(pr + "C");
 	}
+	
+	public void resetPrice() {
+		StoreController sctrl = mCtrl.getStoreController();
+		sctrl.resetPrice();
+	}
+
 
 	// TotalCashButtonListener
 	public void getTotalCash() {

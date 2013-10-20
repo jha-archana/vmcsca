@@ -19,6 +19,8 @@ public class DrinksBrand extends StoreObject {
 
 	private int price;
 
+	
+
 	public DrinksBrand() {
 	}
 
@@ -35,4 +37,32 @@ public class DrinksBrand extends StoreObject {
 		return (price);
 	}
 
+	public PriceSnapshot createSnapshot(){
+		PriceSnapshot  ps = new PriceSnapshot(this.price);
+		return ps;
+	}
+	
+	public void setSnapshot(PriceSnapshot ps){
+		price = ps.getPrice();
+		
+	}
+	
+	public class PriceSnapshot {
+		private int price;
+
+		public PriceSnapshot() {
+		}
+
+		public PriceSnapshot(int price) {
+			this.price = price;
+		}
+
+		public void setPrice(int p) {
+			price = p;
+		}
+
+		public int getPrice() {
+			return (price);
+		}
+	}
 }
