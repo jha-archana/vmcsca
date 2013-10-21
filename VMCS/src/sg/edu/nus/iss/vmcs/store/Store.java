@@ -1,5 +1,7 @@
 package sg.edu.nus.iss.vmcs.store;
 
+import sg.edu.nus.iss.vmcs.iterator.StoreItemIteratorIFace;
+
 /*
  * Copyright 2003 ISS.
  * The contents contained in this document may not be reproduced in any
@@ -9,19 +11,19 @@ package sg.edu.nus.iss.vmcs.store;
  */
 
 /**
- *
- *
+ * 
+ * 
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
 
 public abstract class Store {
-	public final static int CASH  = 1;
+	public final static int CASH = 1;
 	public final static int DRINK = 2;
 
 	protected int size;
 
-	protected StoreItem items[];
+	private StoreItem items[];
 
 	public Store() {
 	}
@@ -48,7 +50,7 @@ public abstract class Store {
 
 	public StoreItem getStoreItem(int idx) {
 		if ((idx >= size) || (idx < 0))
-            return null;
+			return null;
 		return items[idx];
 	}
 
@@ -81,6 +83,38 @@ public abstract class Store {
 
 	public int getStoreSize() {
 		return size;
+	}
+
+	public StoreItemIteratorIFace getStoreItemIterator() {
+		StoreItemIterator iterator = new StoreItemIterator();
+		return iterator;
+	}
+
+	private class StoreItemIterator implements StoreItemIteratorIFace {
+
+		private int currentPosition = 0;
+
+		public void first() {
+			currentPosition = 0;
+		}
+
+		public void next() {
+			if (currentPosition < (size)) {
+				++currentPosition;
+			}
+		}
+
+		public boolean isDone() {
+			if (currentPosition >= (size)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		public StoreItem currentItem() {
+			return items[currentPosition];
+		}
 	}
 
 }

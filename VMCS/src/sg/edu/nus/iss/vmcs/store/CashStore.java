@@ -1,5 +1,7 @@
 package sg.edu.nus.iss.vmcs.store;
 
+import sg.edu.nus.iss.vmcs.iterator.StoreItemIteratorIFace;
+
 /*
  * Copyright 2003 ISS.
  * The contents contained in this document may not be reproduced in any
@@ -35,17 +37,14 @@ public class CashStore extends Store {
 	public Coin findCoin(double weight)
 	{
 		
-		StoreItem[] storeItems = getItems();
-		System.out.println("storeItems"+storeItems);
-        if (storeItems == null)
-                return null;
-        
-        for (int i = 0; i < storeItems.length; i++){
-                Coin coin = (Coin) storeItems[i].getContent();
-                System.out.println("coin.getWeight()"+coin.getWeight());
-                if (coin.getWeight() == weight)
-                        return coin;
-        }
+		StoreItemIteratorIFace storeItemIterator = getStoreItemIterator();
+		while (!storeItemIterator.isDone()) {
+			Coin coin = (Coin) storeItemIterator.currentItem().getContent();
+			 System.out.println("coin.getWeight()"+coin.getWeight());
+             if (coin.getWeight() == weight)
+                     return coin;
+			storeItemIterator.next();
+		}
         return null;
 	}
 
