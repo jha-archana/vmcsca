@@ -81,7 +81,7 @@ public class CustomerPanel extends Dialog {
 		canCollectionBox = new LabelledDisplay("Collect Cans:", 10,
 				LabelledDisplay.FLOW);
 		canCollectionBox.setEditable(false);
-		canCollectionBox.setValue("0 c");
+		canCollectionBox.setValue("");
 		southPanel.add(canCollectionBox);
 
 		// layout setup

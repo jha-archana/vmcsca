@@ -1,7 +1,11 @@
 package sg.edu.nus.iss.vmcs.transaction;
 
 import sg.edu.nus.iss.vmcs.util.VMCSException;
-
+/**
+ * 
+ * @author ALPHY
+ *
+ */
 public class CoinInputState extends TransactionState{
 	CoinInputState()
 	{}

@@ -10,7 +10,11 @@ import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.store.StoreController;
 import sg.edu.nus.iss.vmcs.system.MainController;
 import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
-
+/**
+ * 
+ * @author ALPHY
+ *
+ */
 public class TransactionController {
 	private MainController mCtrl;
 	private DispenseController dCtrl;

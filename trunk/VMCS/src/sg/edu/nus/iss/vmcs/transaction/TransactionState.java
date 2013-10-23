@@ -1,5 +1,9 @@
 package sg.edu.nus.iss.vmcs.transaction;
-
+/**
+ * 
+ * @author ALPHY
+ *
+ */
 public abstract class TransactionState {
 	TransactionState()
 	{}
