@@ -4,7 +4,11 @@ import sg.edu.nus.iss.vmcs.store.DrinksBrand;
 import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.store.StoreObject;
-
+/**
+ * 
+ * @author ALPHY
+ *
+ */
 public class DrinkSelectionState extends TransactionState{
 	DrinkSelectionState(){}
 	@Override
