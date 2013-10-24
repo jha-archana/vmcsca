@@ -153,7 +153,10 @@ public class TransactionController {
 		this.currentState=state;
 		
 	}
-
+	public void closeDown() {
+		if (cPnl != null) 			
+			cPnl.dispose();
+	}
 	
 
 }
