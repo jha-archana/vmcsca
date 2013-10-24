@@ -19,6 +19,8 @@ import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.util.LabelledDisplay;
@@ -146,6 +148,12 @@ public class MaintenancePanel extends Dialog {
 
 		pack();
 		setLocation(200, 100);
+		
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				mctrl.closeDown();
+			}
+		});
 	}
 
 	public void display() {
