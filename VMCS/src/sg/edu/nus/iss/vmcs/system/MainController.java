@@ -110,6 +110,6 @@ public class MainController {
 		machineryCtrl.closeDown();
 		maintenanceCtrl.closeDown();
 		simulatorCtrl.closeDown();
-		// transactionCtrl.
+	    transactionCtrl.closeDown();
 	}
 }

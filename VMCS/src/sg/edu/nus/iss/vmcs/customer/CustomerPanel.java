@@ -95,7 +95,7 @@ public class CustomerPanel extends Dialog {
 
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				// transactionController.closePanel();
+				transactionController.closeDown();
 			}
 		});
 
@@ -129,6 +129,8 @@ public class CustomerPanel extends Dialog {
 			LabelledDisplay totalMoneyInsertedDisplay) {
 		this.totalMoneyInsertedDisplay = totalMoneyInsertedDisplay;
 	}
-	
+	public void closeDown() {
+		dispose();
+	}
 
 }
