@@ -20,53 +20,46 @@ import sg.edu.nus.iss.vmcs.store.*;
  * @author Olivo Miotto, Pang Ping Li
  */
 
+/**
+ * 
+ * @Modified By Divya
+ *
+ */
+
 public class FilePropertyLoader implements PropertyLoaderImpl {
 
-	private static final String PROP_NUM_ITEMS = "NumOfItems";
+	//private static final String PROP_NUM_ITEMS = "NumOfItems";
+	private Properties prop;	
+	private String fileName;	
 
-	private Properties prop;
-	private String fileName;
-
+	/**	 
+     * This constructor creates an instance of FilePropertyLoader.     
+     * @param fileName     
+     */
 	public FilePropertyLoader(String fileName) {
 		this.fileName = fileName;
 	}
 
-	public void initialize() throws IOException {
+	/**	 
+     * This operation reads the properties file into a hash table.
+     */
+	public Properties initialize() throws IOException {
 		prop = new Properties(System.getProperties());
 		FileInputStream stream = new FileInputStream(fileName);
 		prop.load(stream);
 		stream.close();
+		
+		return prop;
 	}
-
-	public void saveProperty() throws IOException {
+	
+	/**	 
+     * This operation writes the properties from the hash table to the file.      
+     * @throws IOException- File Input/Output Exception
+     */
+	public void saveProperty(Properties prop) throws IOException {
 		FileOutputStream stream = new FileOutputStream(fileName);
 		prop.store(stream, "");
 		stream.close();
-	}
-
-	public int getNumOfItems() {
-		String nm = prop.getProperty(PROP_NUM_ITEMS);
-		int nmi;
-		nmi = Integer.parseInt(nm);
-		return nmi;
-	}
-
-	public void setNumOfItems(int vl) {
-		prop.setProperty(PROP_NUM_ITEMS, String.valueOf(vl));
-	}
-
-	//public abstract StoreItem getItem(int index);
-
-	//public abstract void setItem(int index, StoreItem item);
-
-	// Utility methoids for accessing the hashtable 
-
-	public String getValue(String key) {
-		return prop.getProperty(key);
-	}
-
-	public void setValue(String key, String value) {
-		prop.setProperty(key, value);
-	}
+	}	
 
 }

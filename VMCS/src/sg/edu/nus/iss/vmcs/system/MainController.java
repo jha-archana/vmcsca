@@ -51,16 +51,27 @@ public class MainController {
 
 	public void initialize() throws VMCSException {
 		try {
+			
 			Environment.initialize(propertyFile);
-
-			cashLoader = new CashPropertyLoader(Environment.getCashPropFile());
-			drinksLoader = new DrinkPropertyLoader(
-					Environment.getDrinkPropFile());
-
-			cashLoader.initialize();
-			drinksLoader.initialize();
+			
+			/**
+			 * Bridge Pattern Implementation
+			 * @ Modified By Divya Jose
+			 */
+			PropertyLoaderImpl cashPropertyLoader = new FilePropertyLoader(Environment.getCashPropFile());
+			PropertyLoaderImpl drinkPropertyLoader = new FilePropertyLoader(Environment.getDrinkPropFile());
+             
+            cashLoader = new CashPropertyLoader(cashPropertyLoader);
+            cashLoader.initialize();
+            drinksLoader = new DrinkPropertyLoader(drinkPropertyLoader);			 
+            drinksLoader.initialize();
+            
 			storeCtrl = new StoreController(cashLoader, drinksLoader, this);
-
+			
+			/**
+			 * End of Initialization
+			 */
+			
 			storeCtrl.initialize();
 			simulatorCtrl = new SimulationController(this);
 			machineryCtrl = new MachineryController(this);

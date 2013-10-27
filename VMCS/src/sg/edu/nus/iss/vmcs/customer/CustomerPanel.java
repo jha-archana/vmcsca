@@ -67,10 +67,10 @@ public class CustomerPanel extends Dialog {
 		northPanel.add(totalMoneyInsertedDisplay);
 		
          terminateButton = new Button("Terminate and Return Cash"); 
-         TerminateButtonListener tbl = new TerminateButtonListener(
-                         this.transactionController);
+        // TerminateButtonListener tbl = new TerminateButtonListener(
+                      //   this.transactionController);
         // terminateButton.setEnabled(false);
-         terminateButton.addActionListener(tbl);
+        // terminateButton.addActionListener(tbl);
          
          northPanel.add(terminateButton);
 		refundChangeTrayDisplay = new LabelledDisplay("Collect Coins:", 5,

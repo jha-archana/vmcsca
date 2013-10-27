@@ -9,13 +9,13 @@ package sg.edu.nus.iss.vmcs.system;
  */
 
 import sg.edu.nus.iss.vmcs.store.*;
-import java.io.IOException;
-
 /**
  *
  *
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
+ * 
+ * Modified By Team 4 PT
  */
 
 public class DrinkPropertyLoader extends PropertyLoader {
@@ -23,26 +23,25 @@ public class DrinkPropertyLoader extends PropertyLoader {
 	private static final String NAME_LABEL     = "Name";
 	private static final String PRICE_LABEL    = "Price";
 	private static final String QUANTITY_LABEL = "Quantity";
-	private PropertyLoaderImpl fileLoader;
-	
-	public DrinkPropertyLoader(String filen) {
-		fileLoader = new FilePropertyLoader(filen);
-	}
+		
+	public DrinkPropertyLoader(PropertyLoaderImpl loader) {		 
+        super(loader);
+    }
 
 	public StoreItem getItem(int index) {
 		int idx = index + 1;
 		DrinksBrand brand = new DrinksBrand();
 
 		String name = new String(NAME_LABEL + idx);
-		String value = fileLoader.getValue(name);
+		String value = getValue(name);
 		brand.setName(value);
 
 		name = new String(PRICE_LABEL + idx);
-		value = fileLoader.getValue(name);
+		value = getValue(name);
 		brand.setPrice(Integer.parseInt(value));
 
 		name = new String(QUANTITY_LABEL + idx);
-		value = fileLoader.getValue(name);
+		value = getValue(name);
 		int qty = Integer.parseInt(value);
 
 		DrinksStoreItem item = new DrinksStoreItem(brand, qty);
@@ -56,29 +55,13 @@ public class DrinkPropertyLoader extends PropertyLoader {
 		DrinksStoreItem item = (DrinksStoreItem) drinksItem;
 		DrinksBrand brand = (DrinksBrand) item.getContent();
 		String itn = new String(NAME_LABEL + idx);
-		fileLoader.setValue(itn, brand.getName());
+		setValue(itn, brand.getName());
 
 		itn = new String(PRICE_LABEL + idx);
-		fileLoader.setValue(itn, String.valueOf(brand.getPrice()));
+		setValue(itn, String.valueOf(brand.getPrice()));
 
 		itn = new String(QUANTITY_LABEL + idx);
-		fileLoader.setValue(itn, String.valueOf(item.getQuantity()));
+		setValue(itn, String.valueOf(item.getQuantity()));
 
 	}
-	
-public void initialize() throws IOException {		 
-        fileLoader.initialize();
-}
-
-public void saveProperty() throws IOException {
-        fileLoader.saveProperty();
-}
-public int getNumOfItems() {
-        return fileLoader.getNumOfItems();
-}
-public void setNumOfItems(int numItems) {
-        fileLoader.setNumOfItems(numItems);
-}
-
-
 }
