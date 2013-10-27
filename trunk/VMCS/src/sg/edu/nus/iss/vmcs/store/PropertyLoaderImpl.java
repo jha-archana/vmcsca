@@ -1,24 +1,27 @@
 package sg.edu.nus.iss.vmcs.store;
 import java.io.IOException;
+import java.util.Properties;
 
-public interface PropertyLoaderImpl {
+	/** 
+	 * This interface provides the generic functionality required to initialize 
+	 * the stores.  
+	 * @author Divya
+	 */
+	 
+	public interface PropertyLoaderImpl {	        
+	 
+	     /**	 
+	      * This operation reads the properties file into a hash table. 	 
+	      * @throws java.io.IOException	 
+	      */	 
+	      public Properties initialize() throws IOException;	        
+	        	 
+	      /**	 
+	      * This operation writes the properties from the hash table to the file.	 
+	      * @throws java.io.IOException	 
+	      */	 
+	      public void saveProperty(Properties prop) throws IOException; 
+	       
+	}
+	 
 
-		public void initialize() throws IOException ;
-
-		public void saveProperty() throws IOException ;
-
-		public int getNumOfItems();
-
-		public void setNumOfItems(int vl) ;
-
-		/*public abstract StoreItem getItem(int index);
-
-		public abstract void setItem(int index, StoreItem item);*/
-
-		// Utility methods for accessing the hashtable 
-
-		public String getValue(String key) ;
-
-		public void setValue(String key, String value) ;
-	
-}
