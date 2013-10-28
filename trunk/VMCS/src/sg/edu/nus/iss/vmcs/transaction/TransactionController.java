@@ -127,8 +127,9 @@ public class TransactionController {
 	}
 	public void terminateTransaction()
 	{
-		
-		currentState.terminateTransaction(this);
+		if(currentState != null){
+			currentState.terminateTransaction(this);
+		}
 	}
 	
 	public void cancelTransaction()
